@@ -19,7 +19,7 @@ public class User {
     private List<Connection> connectionList;
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
-    private Country country;
+    private Country OriginalCountry;
 
     @ManyToMany
     @JoinColumn
@@ -81,12 +81,12 @@ public class User {
         this.connectionList = connectionList;
     }
 
-    public Country getCountry() {
-        return country;
+    public Country getOriginalCountry() {
+        return OriginalCountry;
     }
 
-    public void setCountry(Country country) {
-        this.country = country;
+    public void setOriginalCountry(Country originalCountry) {
+        OriginalCountry = originalCountry;
     }
 
     public List<ServiceProvider> getServiceProviderList() {
