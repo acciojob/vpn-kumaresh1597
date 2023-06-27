@@ -7,18 +7,35 @@ import javax.persistence.*;
 @Table(name = "country")
 public class Country{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private int id;
+
     private CountryName countryName;
+
     private String code;
 
     @ManyToOne
     @JoinColumn
     private ServiceProvider serviceProvider;
 
-    @OneToOne
-    @JoinColumn
+    @OneToOne(mappedBy = "originalCountry", cascade = CascadeType.ALL)
     private User user;
+
+
+    //  /////////////////////////////
+    //  @Data
+
+
+    public Country() {
+    }
+
+    public Country(int id, CountryName countryName, String code, ServiceProvider serviceProvider, User user) {
+        this.id = id;
+        this.countryName = countryName;
+        this.code = code;
+        this.serviceProvider = serviceProvider;
+        this.user = user;
+    }
 
     public int getId() {
         return id;

@@ -1,8 +1,11 @@
 package com.driver.model;
 
-import com.sun.tools.javac.util.List;
+
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name = "admin")
@@ -10,18 +13,28 @@ public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String username;
+
     private String password;
 
-    @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL)
-    List<ServiceProvider> serviceProviders;
+    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
+    private List<ServiceProvider> ServiceProviders = new ArrayList<>();
 
-    public List<ServiceProvider> getServiceProviders() {
-        return serviceProviders;
+
+
+    //////////////////////////////////////
+    // @Data
+
+
+    public Admin() {
     }
 
-    public void setServiceProviders(List<ServiceProvider> serviceProviders) {
-        this.serviceProviders = serviceProviders;
+    public Admin(int id, String username, String password, List<ServiceProvider> serviceProviders) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        ServiceProviders = serviceProviders;
     }
 
     public int getId() {
@@ -36,8 +49,8 @@ public class Admin {
         return username;
     }
 
-    public void setUsername(String userName) {
-        this.username = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -46,5 +59,13 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<ServiceProvider> getServiceProviders() {
+        return ServiceProviders;
+    }
+
+    public void setServiceProviders(List<ServiceProvider> serviceProviders) {
+        ServiceProviders = serviceProviders;
     }
 }

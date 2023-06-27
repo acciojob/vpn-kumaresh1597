@@ -17,6 +17,19 @@ public class Connection {
     @JoinColumn
     private ServiceProvider serviceProvider;
 
+
+    // /////////////////////////////////
+    // @Data
+
+    public Connection() {
+    }
+
+    public Connection(int id, User user, ServiceProvider serviceProvider) {
+        this.id = id;
+        this.user = user;
+        this.serviceProvider = serviceProvider;
+    }
+
     public int getId() {
         return id;
     }
