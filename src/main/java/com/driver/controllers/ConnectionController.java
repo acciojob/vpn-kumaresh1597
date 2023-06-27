@@ -1,5 +1,6 @@
 package com.driver.controllers;
 
+import com.driver.model.User;
 import com.driver.services.impl.ConnectionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +42,7 @@ public class ConnectionController {
         //The sender is initially not connected to any vpn. If the sender's original country does not match receiver's current country, we need to connect the sender to a suitable vpn. If there are multiple options, connect using the service provider having smallest id
         //If the sender's original country matches receiver's current country, we do not need to do anything as they can communicate. Return the sender as it is.
         //If communication can not be established due to any reason, throw "Cannot establish communication" exception
-        User updatedSender = connectionService.communicate(senderId, receiverId);
+        User updatedSender = connectionService.communicate(senderId,receiverId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
